@@ -1,0 +1,9 @@
+{
+  "type": "workspaces",
+  "data": {
+  "attributes": {
+    "name": "rstesting3-24b1t0wx9h5dd",
+    "terraform-version": "0.12.29"
+  }
+}
+}

@@ -1,0 +1,413 @@
+{
+  "code": {
+    "kind": "number",
+    "value": 200
+  },
+  "body": {
+    "kind": "object",
+    "value": {
+      "data": {
+        "kind": "object",
+        "value": {
+          "id": {
+            "kind": "string",
+            "value": "ws-heTVAwk6ymeQyp83"
+          },
+          "type": {
+            "kind": "string",
+            "value": "workspaces"
+          },
+          "attributes": {
+            "kind": "object",
+            "value": {
+              "name": {
+                "kind": "string",
+                "value": "Flexera-SE-API"
+              },
+              "auto-apply": {
+                "kind": "boolean",
+                "value": false
+              },
+              "created-at": {
+                "kind": "string",
+                "value": "2020-12-02T15:42:29.885Z"
+              },
+              "environment": {
+                "kind": "string",
+                "value": "default"
+              },
+              "locked": {
+                "kind": "boolean",
+                "value": false
+              },
+              "queue-all-runs": {
+                "kind": "boolean",
+                "value": false
+              },
+              "terraform-version": {
+                "kind": "string",
+                "value": "0.12.29"
+              },
+              "working-directory": {
+                "kind": "string",
+                "value": ""
+              },
+              "speculative-enabled": {
+                "kind": "boolean",
+                "value": true
+              },
+              "allow-destroy-plan": {
+                "kind": "boolean",
+                "value": true
+              },
+              "auto-destroy-at": {
+                "kind": "null",
+                "value": null
+              },
+              "latest-change-at": {
+                "kind": "string",
+                "value": "2020-12-02T18:37:55.805Z"
+              },
+              "operations": {
+                "kind": "boolean",
+                "value": true
+              },
+              "execution-mode": {
+                "kind": "string",
+                "value": "remote"
+              },
+              "vcs-repo": {
+                "kind": "null",
+                "value": null
+              },
+              "vcs-repo-identifier": {
+                "kind": "null",
+                "value": null
+              },
+              "permissions": {
+                "kind": "object",
+                "value": {
+                  "can-update": {
+                    "kind": "boolean",
+                    "value": true
+                  },
+                  "can-destroy": {
+                    "kind": "boolean",
+                    "value": true
+                  },
+                  "can-queue-destroy": {
+                    "kind": "boolean",
+                    "value": true
+                  },
+                  "can-queue-run": {
+                    "kind": "boolean",
+                    "value": true
+                  },
+                  "can-queue-apply": {
+                    "kind": "boolean",
+                    "value": true
+                  },
+                  "can-read-state-versions": {
+                    "kind": "boolean",
+                    "value": true
+                  },
+                  "can-create-state-versions": {
+                    "kind": "boolean",
+                    "value": true
+                  },
+                  "can-read-variable": {
+                    "kind": "boolean",
+                    "value": true
+                  },
+                  "can-update-variable": {
+                    "kind": "boolean",
+                    "value": true
+                  },
+                  "can-lock": {
+                    "kind": "boolean",
+                    "value": true
+                  },
+                  "can-unlock": {
+                    "kind": "boolean",
+                    "value": true
+                  },
+                  "can-force-unlock": {
+                    "kind": "boolean",
+                    "value": true
+                  },
+                  "can-read-settings": {
+                    "kind": "boolean",
+                    "value": true
+                  }
+                }
+              },
+              "actions": {
+                "kind": "object",
+                "value": {
+                  "is-destroyable": {
+                    "kind": "boolean",
+                    "value": true
+                  }
+                }
+              },
+              "description": {
+                "kind": "null",
+                "value": null
+              },
+              "file-triggers-enabled": {
+                "kind": "boolean",
+                "value": false
+              },
+              "trigger-prefixes": {
+                "kind": "array",
+                "value": []
+              },
+              "source": {
+                "kind": "string",
+                "value": "tfe-ui"
+              },
+              "source-name": {
+                "kind": "null",
+                "value": null
+              },
+              "source-url": {
+                "kind": "null",
+                "value": null
+              }
+            }
+          },
+          "relationships": {
+            "kind": "object",
+            "value": {
+              "organization": {
+                "kind": "object",
+                "value": {
+                  "data": {
+                    "kind": "object",
+                    "value": {
+                      "id": {
+                        "kind": "string",
+                        "value": "Flexera-SE"
+                      },
+                      "type": {
+                        "kind": "string",
+                        "value": "organizations"
+                      }
+                    }
+                  }
+                }
+              },
+              "ssh-key": {
+                "kind": "object",
+                "value": {
+                  "data": {
+                    "kind": "object",
+                    "value": {
+                      "id": {
+                        "kind": "string",
+                        "value": "sshkey-4oRfisqzUeRLNWv2"
+                      },
+                      "type": {
+                        "kind": "string",
+                        "value": "ssh-keys"
+                      }
+                    }
+                  },
+                  "links": {
+                    "kind": "object",
+                    "value": {
+                      "related": {
+                        "kind": "string",
+                        "value": "/api/v2/ssh-keys/sshkey-4oRfisqzUeRLNWv2"
+                      }
+                    }
+                  }
+                }
+              },
+              "current-run": {
+                "kind": "object",
+                "value": {
+                  "data": {
+                    "kind": "object",
+                    "value": {
+                      "id": {
+                        "kind": "string",
+                        "value": "run-fj8e8jv3Sa1Y7crq"
+                      },
+                      "type": {
+                        "kind": "string",
+                        "value": "runs"
+                      }
+                    }
+                  },
+                  "links": {
+                    "kind": "object",
+                    "value": {
+                      "related": {
+                        "kind": "string",
+                        "value": "/api/v2/runs/run-fj8e8jv3Sa1Y7crq"
+                      }
+                    }
+                  }
+                }
+              },
+              "latest-run": {
+                "kind": "object",
+                "value": {
+                  "data": {
+                    "kind": "object",
+                    "value": {
+                      "id": {
+                        "kind": "string",
+                        "value": "run-fj8e8jv3Sa1Y7crq"
+                      },
+                      "type": {
+                        "kind": "string",
+                        "value": "runs"
+                      }
+                    }
+                  },
+                  "links": {
+                    "kind": "object",
+                    "value": {
+                      "related": {
+                        "kind": "string",
+                        "value": "/api/v2/runs/run-fj8e8jv3Sa1Y7crq"
+                      }
+                    }
+                  }
+                }
+              },
+              "current-state-version": {
+                "kind": "object",
+                "value": {
+                  "data": {
+                    "kind": "object",
+                    "value": {
+                      "id": {
+                        "kind": "string",
+                        "value": "sv-adz1k2Uiwm25ijAA"
+                      },
+                      "type": {
+                        "kind": "string",
+                        "value": "state-versions"
+                      }
+                    }
+                  },
+                  "links": {
+                    "kind": "object",
+                    "value": {
+                      "related": {
+                        "kind": "string",
+                        "value": "/api/v2/workspaces/ws-heTVAwk6ymeQyp83/current-state-version"
+                      }
+                    }
+                  }
+                }
+              },
+              "agent-pool": {
+                "kind": "object",
+                "value": {
+                  "data": {
+                    "kind": "null",
+                    "value": null
+                  }
+                }
+              }
+            }
+          },
+          "links": {
+            "kind": "object",
+            "value": {
+              "self": {
+                "kind": "string",
+                "value": "/api/v2/organizations/Flexera-SE/workspaces/Flexera-SE-API"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "headers": {
+    "kind": "object",
+    "value": {
+      "Date": {
+        "kind": "string",
+        "value": "Wed, 02 Dec 2020 19:01:45 GMT"
+      },
+      "Strict-Transport-Security": {
+        "kind": "string",
+        "value": "max-age=31536000; includeSubDomains; preload"
+      },
+      "Connection": {
+        "kind": "string",
+        "value": "keep-alive"
+      },
+      "Etag": {
+        "kind": "string",
+        "value": "W/\"76242506fc3bdb7d88f8079e726bfbf4\""
+      },
+      "X-Ratelimit-Reset": {
+        "kind": "string",
+        "value": "0.824"
+      },
+      "Referrer-Policy": {
+        "kind": "string",
+        "value": "strict-origin-when-cross-origin"
+      },
+      "X-Permitted-Cross-Domain-Policies": {
+        "kind": "string",
+        "value": "none"
+      },
+      "X-Content-Type-Options": {
+        "kind": "string",
+        "value": "nosniff"
+      },
+      "X-Ratelimit-Limit": {
+        "kind": "string",
+        "value": "30"
+      },
+      "X-Xss-Protection": {
+        "kind": "string",
+        "value": "1; mode=block"
+      },
+      "X-Download-Options": {
+        "kind": "string",
+        "value": "noopen"
+      },
+      "Cache-Control": {
+        "kind": "string",
+        "value": "max-age=0, private, must-revalidate"
+      },
+      "Tfp-Api-Version": {
+        "kind": "string",
+        "value": "2.3"
+      },
+      "X-Request-Id": {
+        "kind": "string",
+        "value": "ded705fc-8cef-c56e-78a9-33813bdcada1"
+      },
+      "X-Frame-Options": {
+        "kind": "string",
+        "value": "SAMEORIGIN"
+      },
+      "Vary": {
+        "kind": "string",
+        "value": "Accept-Encoding, Origin"
+      },
+      "X-Ratelimit-Remaining": {
+        "kind": "string",
+        "value": "29"
+      },
+      "Content-Type": {
+        "kind": "string",
+        "value": "application/vnd.api+json; charset=utf-8"
+      },
+      "Content-Length": {
+        "kind": "string",
+        "value": "1697"
+      }
+    }
+  }
+}
