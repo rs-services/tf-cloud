@@ -68,7 +68,7 @@ module "ec2" {
 
   instance_count = var.instances_number
 
-  name                        = "example-with-ebs"
+  name                        = var.hostname
   ami                         = data.aws_ami.amazon_linux.id
   instance_type               = "c5.large"
   subnet_id                   = tolist(data.aws_subnet_ids.all.ids)[0]

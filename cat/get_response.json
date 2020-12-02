@@ -11,7 +11,7 @@
         "value": {
           "id": {
             "kind": "string",
-            "value": "ws-heTVAwk6ymeQyp83"
+            "value": "ws-754abCyMJPTdrPCK"
           },
           "type": {
             "kind": "string",
@@ -22,7 +22,7 @@
             "value": {
               "name": {
                 "kind": "string",
-                "value": "Flexera-SE-API"
+                "value": "rstesting5-1czd996vvaci1"
               },
               "auto-apply": {
                 "kind": "boolean",
@@ -30,7 +30,7 @@
               },
               "created-at": {
                 "kind": "string",
-                "value": "2020-12-02T15:42:29.885Z"
+                "value": "2020-12-02T22:47:53.606Z"
               },
               "environment": {
                 "kind": "string",
@@ -49,8 +49,8 @@
                 "value": "0.12.29"
               },
               "working-directory": {
-                "kind": "string",
-                "value": ""
+                "kind": "null",
+                "value": null
               },
               "speculative-enabled": {
                 "kind": "boolean",
@@ -66,7 +66,7 @@
               },
               "latest-change-at": {
                 "kind": "string",
-                "value": "2020-12-02T18:37:55.805Z"
+                "value": "2020-12-02T22:47:53.606Z"
               },
               "operations": {
                 "kind": "boolean",
@@ -77,12 +77,37 @@
                 "value": "remote"
               },
               "vcs-repo": {
-                "kind": "null",
-                "value": null
+                "kind": "object",
+                "value": {
+                  "branch": {
+                    "kind": "string",
+                    "value": ""
+                  },
+                  "ingress-submodules": {
+                    "kind": "boolean",
+                    "value": true
+                  },
+                  "identifier": {
+                    "kind": "string",
+                    "value": "rs-services/tf-cloud"
+                  },
+                  "display-identifier": {
+                    "kind": "string",
+                    "value": "rs-services/tf-cloud"
+                  },
+                  "oauth-token-id": {
+                    "kind": "string",
+                    "value": "ot-JjG8EZii7kvFWtUr"
+                  },
+                  "webhook-url": {
+                    "kind": "string",
+                    "value": "https://app.terraform.io/webhooks/vcs/33e2e274-5c5c-479d-8bcf-ec23eb4c90fd"
+                  }
+                }
               },
               "vcs-repo-identifier": {
-                "kind": "null",
-                "value": null
+                "kind": "string",
+                "value": "rs-services/tf-cloud"
               },
               "permissions": {
                 "kind": "object",
@@ -156,7 +181,7 @@
               },
               "file-triggers-enabled": {
                 "kind": "boolean",
-                "value": false
+                "value": true
               },
               "trigger-prefixes": {
                 "kind": "array",
@@ -164,7 +189,7 @@
               },
               "source": {
                 "kind": "string",
-                "value": "tfe-ui"
+                "value": "tfe-api"
               },
               "source-name": {
                 "kind": "null",
@@ -197,33 +222,6 @@
                   }
                 }
               },
-              "ssh-key": {
-                "kind": "object",
-                "value": {
-                  "data": {
-                    "kind": "object",
-                    "value": {
-                      "id": {
-                        "kind": "string",
-                        "value": "sshkey-4oRfisqzUeRLNWv2"
-                      },
-                      "type": {
-                        "kind": "string",
-                        "value": "ssh-keys"
-                      }
-                    }
-                  },
-                  "links": {
-                    "kind": "object",
-                    "value": {
-                      "related": {
-                        "kind": "string",
-                        "value": "/api/v2/ssh-keys/sshkey-4oRfisqzUeRLNWv2"
-                      }
-                    }
-                  }
-                }
-              },
               "current-run": {
                 "kind": "object",
                 "value": {
@@ -232,7 +230,7 @@
                     "value": {
                       "id": {
                         "kind": "string",
-                        "value": "run-fj8e8jv3Sa1Y7crq"
+                        "value": "run-rHj1SChL1ku828Ke"
                       },
                       "type": {
                         "kind": "string",
@@ -245,7 +243,7 @@
                     "value": {
                       "related": {
                         "kind": "string",
-                        "value": "/api/v2/runs/run-fj8e8jv3Sa1Y7crq"
+                        "value": "/api/v2/runs/run-rHj1SChL1ku828Ke"
                       }
                     }
                   }
@@ -259,7 +257,7 @@
                     "value": {
                       "id": {
                         "kind": "string",
-                        "value": "run-fj8e8jv3Sa1Y7crq"
+                        "value": "run-rHj1SChL1ku828Ke"
                       },
                       "type": {
                         "kind": "string",
@@ -272,7 +270,7 @@
                     "value": {
                       "related": {
                         "kind": "string",
-                        "value": "/api/v2/runs/run-fj8e8jv3Sa1Y7crq"
+                        "value": "/api/v2/runs/run-rHj1SChL1ku828Ke"
                       }
                     }
                   }
@@ -282,26 +280,8 @@
                 "kind": "object",
                 "value": {
                   "data": {
-                    "kind": "object",
-                    "value": {
-                      "id": {
-                        "kind": "string",
-                        "value": "sv-adz1k2Uiwm25ijAA"
-                      },
-                      "type": {
-                        "kind": "string",
-                        "value": "state-versions"
-                      }
-                    }
-                  },
-                  "links": {
-                    "kind": "object",
-                    "value": {
-                      "related": {
-                        "kind": "string",
-                        "value": "/api/v2/workspaces/ws-heTVAwk6ymeQyp83/current-state-version"
-                      }
-                    }
+                    "kind": "null",
+                    "value": null
                   }
                 }
               },
@@ -321,7 +301,7 @@
             "value": {
               "self": {
                 "kind": "string",
-                "value": "/api/v2/organizations/Flexera-SE/workspaces/Flexera-SE-API"
+                "value": "/api/v2/organizations/Flexera-SE/workspaces/rstesting5-1czd996vvaci1"
               }
             }
           }
@@ -332,81 +312,81 @@
   "headers": {
     "kind": "object",
     "value": {
-      "Date": {
-        "kind": "string",
-        "value": "Wed, 02 Dec 2020 19:01:45 GMT"
-      },
-      "Strict-Transport-Security": {
-        "kind": "string",
-        "value": "max-age=31536000; includeSubDomains; preload"
-      },
-      "Connection": {
-        "kind": "string",
-        "value": "keep-alive"
-      },
-      "Etag": {
-        "kind": "string",
-        "value": "W/\"76242506fc3bdb7d88f8079e726bfbf4\""
-      },
-      "X-Ratelimit-Reset": {
-        "kind": "string",
-        "value": "0.824"
-      },
-      "Referrer-Policy": {
-        "kind": "string",
-        "value": "strict-origin-when-cross-origin"
-      },
-      "X-Permitted-Cross-Domain-Policies": {
-        "kind": "string",
-        "value": "none"
-      },
-      "X-Content-Type-Options": {
-        "kind": "string",
-        "value": "nosniff"
-      },
       "X-Ratelimit-Limit": {
         "kind": "string",
         "value": "30"
       },
-      "X-Xss-Protection": {
+      "X-Ratelimit-Reset": {
         "kind": "string",
-        "value": "1; mode=block"
-      },
-      "X-Download-Options": {
-        "kind": "string",
-        "value": "noopen"
-      },
-      "Cache-Control": {
-        "kind": "string",
-        "value": "max-age=0, private, must-revalidate"
-      },
-      "Tfp-Api-Version": {
-        "kind": "string",
-        "value": "2.3"
-      },
-      "X-Request-Id": {
-        "kind": "string",
-        "value": "ded705fc-8cef-c56e-78a9-33813bdcada1"
-      },
-      "X-Frame-Options": {
-        "kind": "string",
-        "value": "SAMEORIGIN"
-      },
-      "Vary": {
-        "kind": "string",
-        "value": "Accept-Encoding, Origin"
+        "value": "0.101"
       },
       "X-Ratelimit-Remaining": {
         "kind": "string",
         "value": "29"
       },
+      "X-Frame-Options": {
+        "kind": "string",
+        "value": "SAMEORIGIN"
+      },
+      "Connection": {
+        "kind": "string",
+        "value": "keep-alive"
+      },
+      "Vary": {
+        "kind": "string",
+        "value": "Accept-Encoding, Origin"
+      },
       "Content-Type": {
         "kind": "string",
         "value": "application/vnd.api+json; charset=utf-8"
       },
+      "Etag": {
+        "kind": "string",
+        "value": "W/\"d969a38cfd9a177f4d6f3e5614a4ab9a\""
+      },
+      "X-Xss-Protection": {
+        "kind": "string",
+        "value": "1; mode=block"
+      },
+      "Referrer-Policy": {
+        "kind": "string",
+        "value": "strict-origin-when-cross-origin"
+      },
+      "Date": {
+        "kind": "string",
+        "value": "Wed, 02 Dec 2020 22:56:26 GMT"
+      },
       "Content-Length": {
         "kind": "string",
-        "value": "1697"
+        "value": "1718"
+      },
+      "X-Permitted-Cross-Domain-Policies": {
+        "kind": "string",
+        "value": "none"
+      },
+      "Strict-Transport-Security": {
+        "kind": "string",
+        "value": "max-age=31536000; includeSubDomains; preload"
+      },
+      "X-Content-Type-Options": {
+        "kind": "string",
+        "value": "nosniff"
+      },
+      "Tfp-Api-Version": {
+        "kind": "string",
+        "value": "2.3"
+      },
+      "Cache-Control": {
+        "kind": "string",
+        "value": "max-age=0, private, must-revalidate"
+      },
+      "X-Download-Options": {
+        "kind": "string",
+        "value": "noopen"
+      },
+      "X-Request-Id": {
+        "kind": "string",
+        "value": "0bf803fc-8cef-c56e-78a9-33813bdcada1"
       }
     }
   }
