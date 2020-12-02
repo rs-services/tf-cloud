@@ -16,6 +16,10 @@ variable "instances_number" {
   default = 1
 }
 
+variable "hostname" {
+  default = "example-with-ebs"
+}
+
 ##################################################################
 # Data sources to get VPC, subnet, security group and AMI details
 ##################################################################
