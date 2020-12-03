@@ -12,7 +12,6 @@ end
 parameter "param_workspace_id" do
   label "Workspace Id"
   type "string"
-  operations "queue_build"
 end
 
 output "output_workspace_id" do
@@ -29,6 +28,12 @@ output "output_workspace_href" do
   description "Workspace href"
 end
 
+output "output_cost_estimate" do
+  label "Cost Estimate"
+  category "Cost"
+  description "Cost estimate from Terraform"
+end
+
 operation "launch" do
   definition "defn_launch"
   output_mappings do {
@@ -38,7 +43,10 @@ operation "launch" do
 end
 
 operation "queue_build" do
-  definition "defn_create_runs"
+  definition "defn_queue_build"
+  output_mappings do {
+    $output_cost_estimate => $response_cost_estimate
+  } end
 end
 
 operation "terminate" do
@@ -56,9 +64,10 @@ define defn_launch($param_hostname) return $workspace_href, $workspace_id do
   call defn_create_workspace_var($tf_cat_token, $base_url, $workspace_id, "hostname", $param_hostname,"hostname of server", "terraform", false, false)
 end
 
-define defn_terminate() return $terminate_response do
+define defn_terminate($param_workspace_id) return $terminate_response do
   $tf_cat_token = "eFzdK7eYeDr3dQ.atlasv1.gTbORMzanGi97xson6NzPs1ScnifTviNZeTcWMK65I7ONgSxMOrMy0XeW4WduzGyhSw"
   $base_url = "https://app.terraform.io/api/v2"
+  call defn_create_runs($param_workspace_id, true) retrieve $build_response,$response_cost_estimate
   call defn_delete_workspace($tf_cat_token,$base_url,@@deployment.name) retrieve $terminate_response
 end
 
@@ -138,10 +147,14 @@ define defn_create_workspace_var($tf_cat_token, $base_url, $workspace_id, $key, 
   call sys_log.detail($create_var_response)
 end
 
-define defn_create_runs($param_workspace_id) return $build_response do
+define defn_queue_build($param_workspace_id) return $build_response,$response_cost_estimate do
+  call defn_create_runs($param_workspace_id, false) retrieve $build_response,$response_cost_estimate
+end
+
+define defn_create_runs($param_workspace_id,$is_destroy) return $build_response,$response_cost_estimate do
   #https://github.com/hashicorp/terraform-guides/blob/master/operations/automation-script/loadAndRunWorkspace.sh#L262
   $tf_cat_token = "eFzdK7eYeDr3dQ.atlasv1.gTbORMzanGi97xson6NzPs1ScnifTviNZeTcWMK65I7ONgSxMOrMy0XeW4WduzGyhSw"
-  $base_url = "https://app.terraform.io/api/v2/runs"
+  $base_url = "https://app.terraform.io/api/v2"
   $build_response = http_post(
     headers: {
       "Authorization": join(["Bearer ", $tf_cat_token]),
@@ -152,7 +165,7 @@ define defn_create_runs($param_workspace_id) return $build_response do
       "data": {
         "attributes": {
           "auto-apply": true,
-          "is-destroy": false
+          "is-destroy": $is_destroy
         },
         "type":"runs",
         "relationships": {
@@ -165,6 +178,26 @@ define defn_create_runs($param_workspace_id) return $build_response do
         }
       }
     },
-    url: $base_url
+    url: join([$base_url, "/runs"])
   )
+  call sys_log.detail($build_response)
+  $cost_estimate = $build_response["body"]["data"]["relationships"]["cost-estimate"]
+  $cost_estimate_id = $cost_estimate["data"]["id"]
+  $cost_estimate_href = $cost_estimate["links"]["related"]
+  call sys_log.detail(join(["Cost Estimate Id: ", $cost_estimate_id, " Href: ", $cost_estimate_href]))
+  $status = "pending"
+  $cost_estimate_response = ""
+  while $status != "finished" do
+    sleep(20)
+    $cost_estimate_response = http_get(
+      headers: {
+        "Authorization": join(["Bearer ", $tf_cat_token]),
+        "Content-Type": "application/vnd.api+json"
+      },
+      url: join(["https://app.terraform.io", $cost_estimate_href])
+    )
+    call sys_log.detail($cost_estimate_response)
+    $status = $cost_estimate_response["body"]["data"]["attributes"]["status"]
+  end
+  $response_cost_estimate = $cost_estimate_response["body"]["data"]["attributes"]["proposed-monthly-cost"]
 end
