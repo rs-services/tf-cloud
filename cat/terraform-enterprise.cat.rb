@@ -12,6 +12,7 @@ end
 parameter "param_workspace_id" do
   label "Workspace Id"
   type "string"
+  operations "queue_build"
 end
 
 output "output_workspace_id" do
@@ -64,10 +65,9 @@ define defn_launch($param_hostname) return $workspace_href, $workspace_id do
   call defn_create_workspace_var($tf_cat_token, $base_url, $workspace_id, "hostname", $param_hostname,"hostname of server", "terraform", false, false)
 end
 
-define defn_terminate($param_workspace_id) return $terminate_response do
+define defn_terminate() return $terminate_response do
   $tf_cat_token = "eFzdK7eYeDr3dQ.atlasv1.gTbORMzanGi97xson6NzPs1ScnifTviNZeTcWMK65I7ONgSxMOrMy0XeW4WduzGyhSw"
   $base_url = "https://app.terraform.io/api/v2"
-  call defn_create_runs($param_workspace_id, true) retrieve $build_response,$response_cost_estimate
   call defn_delete_workspace($tf_cat_token,$base_url,@@deployment.name) retrieve $terminate_response
 end
 
@@ -108,6 +108,15 @@ end
 define defn_delete_workspace($tf_cat_token, $base_url, $name) return $response do
   $delete_url = join([$base_url, "/organizations/Flexera-SE/workspaces/", $name])
   call sys_log.detail(join(["Delete URL: ", to_s($delete_url)]))
+  $get_response = http_get(
+    headers: {
+      "Authorization": join(["Bearer ", $tf_cat_token]),
+      "Content-Type": "application/vnd.api+json",
+      "content-type": "application/vnd.api+json"
+    },
+    url: $delete_url
+  )
+  call defn_create_runs($get_response["body"]["data"]["id"], true)
   $response = http_delete(
     headers: {
       "Authorization": join(["Bearer ", $tf_cat_token]),
@@ -200,4 +209,20 @@ define defn_create_runs($param_workspace_id,$is_destroy) return $build_response,
     $status = $cost_estimate_response["body"]["data"]["attributes"]["status"]
   end
   $response_cost_estimate = $cost_estimate_response["body"]["data"]["attributes"]["proposed-monthly-cost"]
+  # Wait for run completion
+  $run_status = "pending"
+  $run_href = $build_response["body"]["data"]["links"]["self"]
+  call sys_log.detail($run_href)
+  while $run_status != "applied" do
+    sleep(20)
+    $run_response = http_get(
+      headers: {
+        "Authorization": join(["Bearer ", $tf_cat_token]),
+        "Content-Type": "application/vnd.api+json"
+      },
+      url: join(["https://app.terraform.io", $run_href])
+    )
+    call sys_log.detail($run_response)
+    $run_status = $run_response["body"]["data"]["attributes"]["status"]
+  end
 end
