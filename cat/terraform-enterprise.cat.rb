@@ -55,7 +55,7 @@ operation "terminate" do
 end
 
 define defn_launch($param_hostname) return $workspace_href, $workspace_id do
-  $tf_cat_token = "eFzdK7eYeDr3dQ.atlasv1.gTbORMzanGi97xson6NzPs1ScnifTviNZeTcWMK65I7ONgSxMOrMy0XeW4WduzGyhSw"
+  $tf_cat_token = cred("TF_CAT_TOKEN")
   $base_url = "https://app.terraform.io/api/v2"
 
   call defn_create_workspace($tf_cat_token,$base_url,"0.12.29",@@deployment) retrieve $workspace_href, $workspace_id
@@ -66,7 +66,7 @@ define defn_launch($param_hostname) return $workspace_href, $workspace_id do
 end
 
 define defn_terminate() return $terminate_response do
-  $tf_cat_token = "eFzdK7eYeDr3dQ.atlasv1.gTbORMzanGi97xson6NzPs1ScnifTviNZeTcWMK65I7ONgSxMOrMy0XeW4WduzGyhSw"
+  $tf_cat_token = cred("TF_CAT_TOKEN")
   $base_url = "https://app.terraform.io/api/v2"
   call defn_delete_workspace($tf_cat_token,$base_url,@@deployment.name) retrieve $terminate_response
 end
@@ -162,7 +162,7 @@ end
 
 define defn_create_runs($param_workspace_id,$is_destroy) return $build_response,$response_cost_estimate do
   #https://github.com/hashicorp/terraform-guides/blob/master/operations/automation-script/loadAndRunWorkspace.sh#L262
-  $tf_cat_token = "eFzdK7eYeDr3dQ.atlasv1.gTbORMzanGi97xson6NzPs1ScnifTviNZeTcWMK65I7ONgSxMOrMy0XeW4WduzGyhSw"
+  $tf_cat_token = cred("TF_CAT_TOKEN")
   $base_url = "https://app.terraform.io/api/v2"
   $build_response = http_post(
     headers: {
