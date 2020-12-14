@@ -84,13 +84,15 @@ define defn_create_workspace($tf_cat_token,$base_url,$tf_version,@deployment) re
         "attributes": {
           "name": @deployment.name,
           "terraform-version": $tf_version,
+          "working-directory": "/aws",
           "vcs-repo": {
             "identifier": "rs-services/tf-cloud",
             "display-identifier": "rs-services/tf-cloud",
             "oauth-token-id": "ot-JjG8EZii7kvFWtUr",
             "branch": "",
             "default-branch": true,
-            "ingress-submodules": true
+            "ingress-submodules": true,
+            "file-triggers-enabled": false
           },
           "vcs-repo-identifier": "rs-services/tf-cloud",
           "auto-apply": true
