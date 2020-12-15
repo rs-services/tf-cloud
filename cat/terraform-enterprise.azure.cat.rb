@@ -1,12 +1,16 @@
 name "Terraform Enterprise CAT"
 rs_ca_ver 20161221
-short_description "Terraform Enterprise CAT"
+short_description "Terraform Enterprise Azure CAT"
 import 'sys_log'
 
-parameter "param_hostname" do
-  label "Hostname"
+parameter "param_prefix" do
+  label "Prefix"
   type "string"
-  default "server1"
+end
+
+parameter "param_location" do
+  label "location"
+  type "string"
 end
 
 parameter "param_workspace_id" do

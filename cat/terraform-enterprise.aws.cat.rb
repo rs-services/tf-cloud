@@ -1,4 +1,4 @@
-name "Terraform Enterprise CAT"
+name "Terraform Enterprise AWS CAT"
 rs_ca_ver 20161221
 short_description "Terraform Enterprise CAT"
 import 'sys_log'
