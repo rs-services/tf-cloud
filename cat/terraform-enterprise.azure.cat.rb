@@ -1,4 +1,4 @@
-name "Terraform Enterprise CAT"
+name "Terraform Enterprise Azure CAT"
 rs_ca_ver 20161221
 short_description "Terraform Enterprise Azure CAT"
 import 'sys_log'
@@ -58,15 +58,19 @@ operation "terminate" do
   definition "defn_terminate"
 end
 
-define defn_launch($param_hostname) return $workspace_href, $workspace_id do
+define defn_launch($param_prefix, $param_location) return $workspace_href, $workspace_id do
   $tf_cat_token = cred("TF_CAT_TOKEN")
   $base_url = "https://app.terraform.io/api/v2"
 
   call defn_create_workspace($tf_cat_token,$base_url,"0.12.29",@@deployment) retrieve $workspace_href, $workspace_id
   call sys_log.detail(join(["Workspace ID: ", $workspace_id, ", HREF: ", $workspace_href]))
-  call defn_create_workspace_var($tf_cat_token, $base_url, $workspace_id, "AWS_ACCESS_KEY_ID", cred("AWS_ACCESS_KEY_ID"),"AWS ACCESS KEY", "env", false, false)
-  call defn_create_workspace_var($tf_cat_token, $base_url, $workspace_id, "AWS_SECRET_ACCESS_KEY", cred("AWS_SECRET_ACCESS_KEY"),"AWS_SECRET_ACCESS_KEY", "env", false, true)
-  call defn_create_workspace_var($tf_cat_token, $base_url, $workspace_id, "hostname", $param_hostname,"hostname of server", "terraform", false, false)
+  call defn_create_workspace_var($tf_cat_token, $base_url, $workspace_id, "ARM_SUBSCRIPTION_ID", cred("ARM_SUBSCRIPTION_ID"),"ARM_SUBSCRIPTION_ID", "env", false, false)
+  call defn_create_workspace_var($tf_cat_token, $base_url, $workspace_id, "ARM_TENANT_ID", cred("ARM_TENANT_ID"),"ARM_TENANT_ID", "env", false, true)
+  call defn_create_workspace_var($tf_cat_token, $base_url, $workspace_id, "ARM_CLIENT_ID", cred("ARM_CLIENT_ID"),"ARM_CLIENT_ID", "env", false, true)
+  call defn_create_workspace_var($tf_cat_token, $base_url, $workspace_id, "ARM_CLIENT_SECRET", cred("ARM_CLIENT_SECRET"),"ARM_CLIENT_SECRET", "env", false, true)
+  call defn_create_workspace_var($tf_cat_token, $base_url, $workspace_id, "ARM_ACCESS_KEY", cred("ARM_ACCESS_KEY"),"ARM_ACCESS_KEY", "env", false, true)
+  call defn_create_workspace_var($tf_cat_token, $base_url, $workspace_id, "prefix", $param_prefix,"prefix for environment", "terraform", false, false)
+  call defn_create_workspace_var($tf_cat_token, $base_url, $workspace_id, "location", $param_location,"location of environment", "terraform", false, false)
 end
 
 define defn_terminate() return $terminate_response do
@@ -88,7 +92,7 @@ define defn_create_workspace($tf_cat_token,$base_url,$tf_version,@deployment) re
         "attributes": {
           "name": @deployment.name,
           "terraform-version": $tf_version,
-          "working-directory": "/aws",
+          "working-directory": "/azure",
           "vcs-repo": {
             "identifier": "rs-services/tf-cloud",
             "display-identifier": "rs-services/tf-cloud",
