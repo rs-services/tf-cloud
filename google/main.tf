@@ -26,7 +26,7 @@ resource "google_compute_subnetwork" "default" {
   region                   = var.region
   private_ip_google_access = true
 }
-
+data "google_client_config" "current" {}
 data "google_container_engine_versions" "default" {
 }
 
