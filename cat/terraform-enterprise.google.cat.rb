@@ -52,9 +52,9 @@ define defn_launch() return $workspace_href, $workspace_id do
   $tf_cat_token = cred("TF_CAT_TOKEN")
   $base_url = "https://app.terraform.io/api/v2"
 
-  call defn_create_workspace($tf_cat_token,$base_url,"0.12.29",@@deployment) retrieve $workspace_href, $workspace_id
+  call defn_create_workspace($tf_cat_token,$base_url,"0.13.5",@@deployment) retrieve $workspace_href, $workspace_id
   call sys_log.detail(join(["Workspace ID: ", $workspace_id, ", HREF: ", $workspace_href]))
-  call defn_create_workspace_var($tf_cat_token, $base_url, $workspace_id, "GOOGLE_CREDENTIALS", cred("GOOGLE_SERVICE_ACCOUNT_FILE"),"Google Credentials", "env", false, false)
+  call defn_create_workspace_var($tf_cat_token, $base_url, $workspace_id, "GOOGLE_CREDENTIALS", cred("GOOGLE_SERVICE_ACCOUNT_FILE_WONL"),"Google Credentials", "env", false, false)
 end
 
 define defn_terminate() return $terminate_response do

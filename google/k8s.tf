@@ -1,9 +1,13 @@
 provider "kubernetes" {
-  host                   = "${google_container_cluster.default.endpoint}"
-  token                  = "${data.google_client_config.current.access_token}"
-  client_certificate     = "${base64decode(google_container_cluster.default.master_auth.0.client_certificate)}"
-  client_key             = "${base64decode(google_container_cluster.default.master_auth.0.client_key)}"
-  cluster_ca_certificate = "${base64decode(google_container_cluster.default.master_auth.0.cluster_ca_certificate)}"
+  host  = google_container_cluster.default.endpoint
+  token = data.google_client_config.current.access_token
+  client_certificate = base64decode(
+    google_container_cluster.default.master_auth[0].client_certificate,
+  )
+  client_key = base64decode(google_container_cluster.default.master_auth[0].client_key)
+  cluster_ca_certificate = base64decode(
+    google_container_cluster.default.master_auth[0].cluster_ca_certificate,
+  )
 }
 
 resource "kubernetes_namespace" "staging" {
@@ -13,18 +17,18 @@ resource "kubernetes_namespace" "staging" {
 }
 
 resource "google_compute_address" "default" {
-  name   = "${var.network_name}"
-  region = "${var.region}"
+  name   = var.network_name
+  region = var.region
 }
 
 resource "kubernetes_service" "nginx" {
   metadata {
-    namespace = "${kubernetes_namespace.staging.metadata.0.name}"
+    namespace = kubernetes_namespace.staging.metadata[0].name
     name      = "nginx"
   }
 
   spec {
-    selector {
+    selector = {
       run = "nginx"
     }
 
@@ -37,22 +41,22 @@ resource "kubernetes_service" "nginx" {
     }
 
     type             = "LoadBalancer"
-    load_balancer_ip = "${google_compute_address.default.address}"
+    load_balancer_ip = google_compute_address.default.address
   }
 }
 
 resource "kubernetes_replication_controller" "nginx" {
   metadata {
     name      = "nginx"
-    namespace = "${kubernetes_namespace.staging.metadata.0.name}"
+    namespace = kubernetes_namespace.staging.metadata[0].name
 
-    labels {
+    labels = {
       run = "nginx"
     }
   }
 
   spec {
-    selector {
+    selector = {
       run = "nginx"
     }
 
@@ -78,5 +82,6 @@ resource "kubernetes_replication_controller" "nginx" {
 }
 
 output "load-balancer-ip" {
-  value = "${google_compute_address.default.address}"
+  value = google_compute_address.default.address
 }
+
