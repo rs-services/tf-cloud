@@ -1,7 +1,26 @@
+variable "zone" {
+  default = "us-central1-a"
+}
+
+resource "google_compute_disk" "default" {
+  name  = "test-disk"
+  type  = "pd-ssd"
+  zone  = var.zone
+  labels = {
+    environment = "dev"
+  }
+  size = 10
+}
+
+resource "google_compute_attached_disk" "default" {
+  disk     = google_compute_disk.default.id
+  instance = google_compute_instance.default.id
+}
+
 resource "google_compute_instance" "default" {
   name         = "test"
   machine_type = "e2-medium"
-  zone         = "us-central1-a"
+  zone         = var.zone
 
   tags = ["foo", "bar"]
 
@@ -9,11 +28,6 @@ resource "google_compute_instance" "default" {
     initialize_params {
       image = "debian-cloud/debian-9"
     }
-  }
-
-  // Local SSD disk
-  scratch_disk {
-    interface = "NVME"
   }
 
   network_interface {
